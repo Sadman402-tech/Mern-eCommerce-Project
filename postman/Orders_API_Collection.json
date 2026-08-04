@@ -1,0 +1,223 @@
+{
+  "info": {
+    "_postman_id": "c954dfff-9a0c-4f50-acaf-a35c48504794",
+    "name": "Orders API",
+    "description": "Postman Collection for MERN eCommerce Order Management APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://mern-ecommerce-project-m6xg.onrender.com",
+      "type": "string"
+    },
+    {
+      "key": "bearer_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Create Order",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "JWT Authorization Token"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"orderItems\": [\n    {\n      \"product\": \"667e4152864ef604b901a5b8\",\n      \"name\": \"iPhone15 Pro Max\",\n      \"image\": \"public/uploads/1719660239123.jpg\",\n      \"price\": 160000,\n      \"quantity\": 1\n    }\n  ],\n  \"shippingAddress\": {\n    \"address\": \"123 Main Street\",\n    \"city\": \"Dhaka\",\n    \"postalCode\": \"1200\",\n    \"country\": \"Bangladesh\",\n    \"phone\": \"01700000000\"\n  },\n  \"paymentMethod\": \"cash\",\n  \"itemsPrice\": 160000,\n  \"taxPrice\": 100,\n  \"shippingPrice\": 60,\n  \"totalPrice\": 160160\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/order/create",
+          "host": ["{{base_url}}"],
+          "path": ["order", "create"]
+        }
+      }
+    },
+    {
+      "name": "Get My Orders",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "JWT Authorization Token"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/order/my-orders",
+          "host": ["{{base_url}}"],
+          "path": ["order", "my-orders"]
+        }
+      }
+    },
+    {
+      "name": "Get Single Order",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "JWT Authorization Token"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/order/:id",
+          "host": ["{{base_url}}"],
+          "path": ["order", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cancel Order",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "JWT Authorization Token"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/order/:id",
+          "host": ["{{base_url}}"],
+          "path": ["order", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Orders (Admin)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "Admin JWT Token"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/order/all-orders",
+          "host": ["{{base_url}}"],
+          "path": ["order", "all-orders"]
+        }
+      }
+    },
+    {
+      "name": "Update Order to Paid (Admin)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "Admin JWT Token"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"paymentResult\": {\n    \"id\": \"PAY123456\",\n    \"status\": \"COMPLETED\",\n    \"update_time\": \"2026-08-04T12:00:00Z\",\n    \"email_address\": \"user@example.com\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/order/:id/pay",
+          "host": ["{{base_url}}"],
+          "path": ["order", ":id", "pay"],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Order to Delivered (Admin)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "Admin JWT Token"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/order/:id/deliver",
+          "host": ["{{base_url}}"],
+          "path": ["order", ":id", "deliver"],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Order Status (Admin)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "Admin JWT Token"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"orderStatus\": \"shipped\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/order/:id/status",
+          "host": ["{{base_url}}"],
+          "path": ["order", ":id", "status"],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

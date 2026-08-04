@@ -1,0 +1,222 @@
+{
+  "info": {
+    "_postman_id": "6160d890-c7be-471f-a76e-ba7d94e7b670",
+    "name": "Products API",
+    "description": "Postman Collection for MERN eCommerce Product, Category, and Brand Management APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://mern-ecommerce-project-m6xg.onrender.com",
+      "type": "string"
+    },
+    {
+      "key": "bearer_token",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Get All Products",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/product/all-products",
+          "host": ["{{base_url}}"],
+          "path": ["product", "all-products"]
+        }
+      }
+    },
+    {
+      "name": "Get Single Product",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/product/get-product/:id",
+          "host": ["{{base_url}}"],
+          "path": ["product", "get-product", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": "6a4cd50dc4da32a8740f46c4"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Brands",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/product/all-brands",
+          "host": ["{{base_url}}"],
+          "path": ["product", "all-brands"]
+        }
+      }
+    },
+    {
+      "name": "Get All Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/product/all-categories",
+          "host": ["{{base_url}}"],
+          "path": ["product", "all-categories"]
+        }
+      }
+    },
+    {
+      "name": "Create Product (Admin)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "Admin Authorization Token"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name", "type": "text", "value": "iPhone 15 Pro Max" },
+            { "key": "slug", "type": "text", "value": "iphone15-pro-max" },
+            { "key": "description", "type": "text", "value": "Apple flagship smartphone" },
+            { "key": "price", "type": "text", "value": "200000" },
+            { "key": "discountPrice", "type": "text", "value": "160000" },
+            { "key": "category", "type": "text", "value": "6a43a8c72559250fa69bd57f" },
+            { "key": "brand", "type": "text", "value": "6a43a508f0b83d4ddea3b39c" },
+            { "key": "stock", "type": "text", "value": "10" },
+            { "key": "sku", "type": "text", "value": "IP15PM" },
+            { "key": "material", "type": "text", "value": "Titanium" },
+            { "key": "color", "type": "text", "value": "Natural Titanium" },
+            { "key": "size", "type": "text", "value": "256GB" },
+            { "key": "isFeatured", "type": "text", "value": "true" },
+            { "key": "images", "type": "file", "src": "images.jpg" }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/product/create",
+          "host": ["{{base_url}}"],
+          "path": ["product", "create"]
+        }
+      }
+    },
+    {
+      "name": "Update Product (Admin)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "Admin Authorization Token"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name", "type": "text", "value": "iPhone 15 Pro Max Updated" },
+            { "key": "price", "type": "text", "value": "195000" }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/product/update/:id",
+          "host": ["{{base_url}}"],
+          "path": ["product", "update", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Product (Admin)",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "Admin Authorization Token"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/product/delete-product/:id",
+          "host": ["{{base_url}}"],
+          "path": ["product", "delete-product", ":id"],
+          "variable": [
+            {
+              "key": "id",
+              "value": ""
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Add Brand (Admin)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "Admin Authorization Token"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name", "type": "text", "value": "Samsung" },
+            { "key": "slug", "type": "text", "value": "samsung" },
+            { "key": "description", "type": "text", "value": "Global tech company" },
+            { "key": "logo", "type": "file", "src": "samsung.png" }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/product/add-brand",
+          "host": ["{{base_url}}"],
+          "path": ["product", "add-brand"]
+        }
+      }
+    },
+    {
+      "name": "Add Category (Admin)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{bearer_token}}",
+            "description": "Admin Authorization Token"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            { "key": "name", "type": "text", "value": "Electronics" },
+            { "key": "slug", "type": "text", "value": "electronics" },
+            { "key": "description", "type": "text", "value": "Electronic devices and gadgets" },
+            { "key": "image", "type": "file", "src": "electronics.jpg" }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/product/add-category",
+          "host": ["{{base_url}}"],
+          "path": ["product", "add-category"]
+        }
+      }
+    }
+  ]
+}
